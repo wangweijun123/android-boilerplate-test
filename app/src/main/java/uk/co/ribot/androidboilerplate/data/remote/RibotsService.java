@@ -15,8 +15,8 @@ import uk.co.ribot.androidboilerplate.data.model.MyResp;
 public interface RibotsService {
 
 //    String ENDPOINT = "https://api.ribot.io/";
-    String ENDPOINT = "http://mapi.letvstore.com/";
-//    String ENDPOINT = "https://api.github.com";
+//    String ENDPOINT = "http://mapi.letvstore.com/";
+    String ENDPOINT = "https://api.github.com";
 
     @GET("mapi/edit/recommend")
     Observable<MyResp> getRankApps(@Query("pagefrom") String pagefrom, @Query("pagesize") String pagesize, @Query("code") String code);
