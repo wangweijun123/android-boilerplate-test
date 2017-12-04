@@ -1,12 +1,16 @@
 package uk.co.ribot.androidboilerplate.ui.main;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import uk.co.ribot.androidboilerplate.R;
 import uk.co.ribot.androidboilerplate.data.model.Contributor;
@@ -17,11 +21,11 @@ public class MainActivity extends BaseActivity implements MainMvpView{
     @Inject
     MainPresenter mainPresenter;
 
-//    @BindView(R2.id.recycler_view)
-//    RecyclerView mRecyclerView;
+    @BindView(R.id.recycler_view)
+    RecyclerView mRecyclerView;
 //
-//    @BindView(R2.id.startRibort)
-//    Button startRibort;
+    @BindView(R.id.startRibort)
+    Button startRibort;
 
     @Inject
     MyAdapter adapter;
@@ -33,10 +37,10 @@ public class MainActivity extends BaseActivity implements MainMvpView{
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-//        startRibort.setText("xxx");
+        startRibort.setText("xxx");
 //
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(adapter);
 
         mainPresenter.attachView(this);
         mainPresenter.loadContributors();
