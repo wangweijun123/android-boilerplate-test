@@ -13,7 +13,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import uk.co.ribot.androidboilerplate.data.DataManager;
 import uk.co.ribot.androidboilerplate.data.model.Contributor;
-import uk.co.ribot.androidboilerplate.data.model.MyResp;
 import uk.co.ribot.androidboilerplate.injection.ConfigPersistent;
 import uk.co.ribot.androidboilerplate.ui.base.BasePresenter;
 import uk.co.ribot.androidboilerplate.util.RxUtil;
@@ -41,31 +40,6 @@ public class MainPresenter extends BasePresenter<MainMvpView> {
         if (mDisposable != null) mDisposable.dispose();
     }
 
-    public void getRankApps() {
-        mDataManager.getRankApps().observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<MyResp>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-                        Log.i("wang", "onSubscribe ");
-                    }
-
-                    @Override
-                    public void onNext(@NonNull MyResp ribots) {
-                        Log.i("wang", "onNext ribots.status: "+ribots.status);
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        Log.i("wang", "onError");
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        Log.i("wang", "onComplete");
-                    }
-                });
-    }
 
     public void loadContributors() {
         checkViewAttached();

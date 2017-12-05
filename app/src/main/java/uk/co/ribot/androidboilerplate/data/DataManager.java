@@ -16,21 +16,25 @@ import io.reactivex.functions.Function;
 import uk.co.ribot.androidboilerplate.data.local.DatabaseHelper;
 import uk.co.ribot.androidboilerplate.data.local.PreferencesHelper;
 import uk.co.ribot.androidboilerplate.data.model.Contributor;
-import uk.co.ribot.androidboilerplate.data.model.MyResp;
+import uk.co.ribot.androidboilerplate.data.model.IResponse;
+import uk.co.ribot.androidboilerplate.data.model.RankListModel;
 import uk.co.ribot.androidboilerplate.data.remote.RibotsService;
+import uk.co.ribot.androidboilerplate.data.remote.StoreService;
 
 @Singleton
 public class DataManager {
 
     private final RibotsService mRibotsService;
+    private final StoreService mStoreService;
     private final DatabaseHelper mDatabaseHelper;
     private final PreferencesHelper mPreferencesHelper;
     // RibotsService 初始化会去ApplicationComponent对应ApplicationModule中找，还真找到了
     //
     @Inject
-    public DataManager(RibotsService ribotsService, PreferencesHelper preferencesHelper,
+    public DataManager(RibotsService ribotsService, StoreService storeService, PreferencesHelper preferencesHelper,
                        DatabaseHelper databaseHelper) {
         mRibotsService = ribotsService;
+        mStoreService = storeService;
         mPreferencesHelper = preferencesHelper;
         mDatabaseHelper = databaseHelper;
     }
@@ -40,8 +44,8 @@ public class DataManager {
     }
 
 
-    public Observable<MyResp> getRankApps() {
-        return mRibotsService.getRankApps("1", "1", "RANK_HOT");
+    public Observable<IResponse<RankListModel>> getRankApps() {
+        return mStoreService.getRankApps("1", "20", "RANK_HOT");
     }
 
     public Observable<List<Contributor>> contributors() {
