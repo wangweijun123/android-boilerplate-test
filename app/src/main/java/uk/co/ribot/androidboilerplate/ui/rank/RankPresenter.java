@@ -31,6 +31,7 @@ public class RankPresenter extends BasePresenter<RankMvpView> {
     }
 
     public void getRankApps() {
+        Log.i("wang", "getRankApps mDataManager:"+mDataManager);
         mDataManager.getRankApps().observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<IResponse<RankListModel>>() {
@@ -46,12 +47,12 @@ public class RankPresenter extends BasePresenter<RankMvpView> {
                         Log.i("wang", "onNext code:"+code);
                         RankListMiddle rankListMiddle = rankListModel.ranklist.get(0);
 
-                        Log.i("wang", "pagesize:"+rankListMiddle.pagesize);
+//                        Log.i("wang", "pagesize:"+rankListMiddle.pagesize);
 
                         List<BaseModel> list =  rankListMiddle.items;
-                        for(BaseModel baseModel :  list) {
-                            Log.i("wang", "baseModel:"+baseModel);
-                        }
+//                        for(BaseModel baseModel :  list) {
+//                            Log.i("wang", "baseModel:"+baseModel);
+//                        }
 
                         getMvpView().showDataLoadSuccess(list);
                     }

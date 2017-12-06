@@ -15,6 +15,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
 import uk.co.ribot.androidboilerplate.data.local.DatabaseHelper;
 import uk.co.ribot.androidboilerplate.data.local.PreferencesHelper;
+import uk.co.ribot.androidboilerplate.data.model.AppDetailsModel;
 import uk.co.ribot.androidboilerplate.data.model.Contributor;
 import uk.co.ribot.androidboilerplate.data.model.IResponse;
 import uk.co.ribot.androidboilerplate.data.model.RankListModel;
@@ -45,11 +46,19 @@ public class DataManager {
 
 
     public Observable<IResponse<RankListModel>> getRankApps() {
+        Log.i("wang", "getRankApps mStoreService:"+mStoreService);
         return mStoreService.getRankApps("1", "20", "RANK_HOT");
     }
 
+    public Observable<IResponse<AppDetailsModel>> getAppDetail(String packagename) {
+        Log.i("wang", "getAppDetail mStoreService:"+mStoreService);
+        return mStoreService.getAppDetail(packagename);
+    }
+
+
+
     public Observable<List<Contributor>> contributors() {
-        Log.i("wang", "mRibotsService:"+mRibotsService+", tid:"+ Thread.currentThread().getId());
+        Log.i("wang", "contributors mRibotsService:"+mRibotsService+", tid:"+ Thread.currentThread().getId());
         return mRibotsService.contributors("square", "retrofit");
     }
 

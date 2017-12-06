@@ -57,9 +57,9 @@ public class MainPresenter extends BasePresenter<MainMvpView> {
                     @Override
                     public void onNext(@NonNull List<Contributor> contributors) {
                         Log.i("wang", "onNext ...");
-                        for (Contributor con:contributors) {
-                            Log.i("wang", "contributor:"+con);
-                        }
+//                        for (Contributor con:contributors) {
+//                            Log.i("wang", "contributor:"+con);
+//                        }
                         getMvpView().showDataLoadSuccessTip(contributors);
                     }
 

@@ -10,7 +10,7 @@ public class BaseModel {
 
     public Icon icon;
     public String name;
-
+    public String packagename;
 
     public class Icon implements Serializable {
         public String url;
@@ -18,6 +18,6 @@ public class BaseModel {
 
     @Override
     public String toString() {
-        return "name:"+name + ", url:"+icon.url;
+        return "name:" + name + ", packagename:" + packagename + ", url:" + icon.url;
     }
 }

@@ -40,15 +40,14 @@ public class BaseActivity extends AppCompatActivity {
         ConfigPersistentComponent configPersistentComponent = sComponentsMap.get(mActivityId, null);
 
         if (configPersistentComponent == null) {
-            Log.i("wang", "Creating new ConfigPersistentComponent id="+ mActivityId);
             configPersistentComponent = DaggerConfigPersistentComponent.builder()
                     .applicationComponent(BoilerplateApplication.get(this).getComponent())
                     .build();
             sComponentsMap.put(mActivityId, configPersistentComponent);
-            Log.i("wang","sComponentsMap size:"+sComponentsMap.size());
+            Log.i("wang", "Creating new ConfigPersistentComponent:"+configPersistentComponent+", id="+ mActivityId+", size:"+sComponentsMap.size());
         }
         mActivityComponent = configPersistentComponent.activityComponent(new ActivityModule(this));
-        Log.i("wang","configPersistentComponent:"+configPersistentComponent+", mActivityComponent:"+mActivityComponent);
+        Log.i("wang","mActivityComponent:"+mActivityComponent);
     }
 
     @Override
@@ -60,14 +59,13 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         if (!isChangingConfigurations()) {
-            Log.i("wang", "Clearing ConfigPersistentComponent id="+ mActivityId);
+            Log.i("wang", "Clearing id="+ mActivityId);
             sComponentsMap.remove(mActivityId);
         }
         super.onDestroy();
     }
 
     public ActivityComponent activityComponent() {
-        Log.i("wang", "mActivityComponent:"+mActivityComponent);
         return mActivityComponent;
     }
 
