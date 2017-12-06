@@ -1,6 +1,6 @@
 package uk.co.ribot.androidboilerplate.injection.component;
 
-import dagger.Subcomponent;
+import dagger.Component;
 import uk.co.ribot.androidboilerplate.injection.PerActivity;
 import uk.co.ribot.androidboilerplate.injection.module.ActivityModule;
 import uk.co.ribot.androidboilerplate.ui.detail.DetailActivity;
@@ -13,7 +13,7 @@ import uk.co.ribot.androidboilerplate.ui.rank.RankActivity;
  * ActivityComponent  --继承--> ConfigPersistentComponent --继承--> ApplicationComponent
  */
 @PerActivity
-@Subcomponent(modules = ActivityModule.class)
+@Component(modules = ActivityModule.class, dependencies = ApplicationComponent.class)
 public interface ActivityComponent {
 
     void inject(MainActivity mainActivity);
