@@ -48,6 +48,7 @@ public class BaseActivity extends AppCompatActivity {
             Log.i("wang","sComponentsMap size:"+sComponentsMap.size());
         }
         mActivityComponent = configPersistentComponent.activityComponent(new ActivityModule(this));
+        Log.i("wang","configPersistentComponent:"+configPersistentComponent+", mActivityComponent:"+mActivityComponent);
     }
 
     @Override
